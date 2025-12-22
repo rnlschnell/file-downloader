@@ -40,11 +40,27 @@ document.addEventListener('DOMContentLoaded', () => {
   downloadBtn.addEventListener('click', downloadSelected);
 });
 
+// Set button loading state
+function setButtonLoading(button, isLoading) {
+  const btnText = button.querySelector('.btn-text');
+  const btnLoading = button.querySelector('.btn-loading');
+
+  if (isLoading) {
+    button.disabled = true;
+    button.classList.add('scanning');
+    if (btnText) btnText.classList.add('hidden');
+    if (btnLoading) btnLoading.classList.remove('hidden');
+  } else {
+    button.disabled = false;
+    button.classList.remove('scanning');
+    if (btnText) btnText.classList.remove('hidden');
+    if (btnLoading) btnLoading.classList.add('hidden');
+  }
+}
+
 // Scan the current page for files
 async function scanPage() {
-  scanBtn.disabled = true;
-  scanBtn.classList.add('scanning');
-  scanBtn.innerHTML = '<span class="icon">⏳</span> Scanning...';
+  setButtonLoading(scanBtn, true);
 
   try {
     // Get the current tab
@@ -64,9 +80,7 @@ async function scanPage() {
     console.error('Scan error:', error);
     showEmptyState('Error scanning page. Try refreshing the page.');
   } finally {
-    scanBtn.disabled = false;
-    scanBtn.classList.remove('scanning');
-    scanBtn.innerHTML = '<span class="icon">🔍</span> Scan Page';
+    setButtonLoading(scanBtn, false);
   }
 }
 
@@ -180,8 +194,7 @@ async function downloadSelected() {
 
   if (selectedFiles.length === 0) return;
 
-  downloadBtn.disabled = true;
-  downloadBtn.innerHTML = '<span class="icon">⏳</span> Downloading...';
+  setButtonLoading(downloadBtn, true);
 
   try {
     // Send download request to background script
@@ -190,19 +203,62 @@ async function downloadSelected() {
       files: selectedFiles
     });
 
-    downloadBtn.innerHTML = '<span class="icon">✓</span> Downloads Started!';
+    // Show success state briefly
+    const btnText = downloadBtn.querySelector('.btn-text');
+    const btnLoading = downloadBtn.querySelector('.btn-loading');
+
+    if (btnLoading) btnLoading.classList.add('hidden');
+    if (btnText) {
+      btnText.innerHTML = `
+        <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+        </svg>
+        Downloads Started!
+      `;
+      btnText.classList.remove('hidden');
+    }
 
     setTimeout(() => {
-      downloadBtn.innerHTML = `<span class="icon">⬇</span> Download Selected (<span id="selectedCount">${selectedFiles.length}</span>)`;
-      downloadBtn.disabled = false;
+      resetDownloadButton();
     }, 2000);
   } catch (error) {
     console.error('Download error:', error);
-    downloadBtn.innerHTML = '<span class="icon">✗</span> Error';
+
+    const btnText = downloadBtn.querySelector('.btn-text');
+    const btnLoading = downloadBtn.querySelector('.btn-loading');
+
+    if (btnLoading) btnLoading.classList.add('hidden');
+    if (btnText) {
+      btnText.innerHTML = `
+        <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd"/>
+        </svg>
+        Error
+      `;
+      btnText.classList.remove('hidden');
+    }
 
     setTimeout(() => {
-      downloadBtn.innerHTML = `<span class="icon">⬇</span> Download Selected (<span id="selectedCount">${selectedFiles.length}</span>)`;
-      downloadBtn.disabled = false;
+      resetDownloadButton();
     }, 2000);
   }
+}
+
+// Reset download button to default state
+function resetDownloadButton() {
+  const btnText = downloadBtn.querySelector('.btn-text');
+  const count = files.filter(f => f.selected).length;
+
+  if (btnText) {
+    btnText.innerHTML = `
+      <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/>
+        <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/>
+      </svg>
+      Download Selected (<span id="selectedCount">${count}</span>)
+    `;
+  }
+
+  downloadBtn.disabled = count === 0;
+  downloadBtn.classList.remove('scanning');
 }
