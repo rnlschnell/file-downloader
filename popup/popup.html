@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk File Downloader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Bulk File Downloader</h1>
+      <p class="subtitle">Select files to download</p>
+    </header>
+
+    <div class="controls">
+      <button id="scanBtn" class="btn btn-primary">
+        <span class="icon">&#128269;</span> Scan Page
+      </button>
+      <div class="filter-group">
+        <label for="filterType">Filter:</label>
+        <select id="filterType">
+          <option value="all">All Files</option>
+          <option value="images">Images</option>
+          <option value="documents">Documents</option>
+          <option value="videos">Videos</option>
+          <option value="audio">Audio</option>
+          <option value="archives">Archives</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="selection-controls">
+      <button id="selectAll" class="btn btn-small">Select All</button>
+      <button id="deselectAll" class="btn btn-small">Deselect All</button>
+      <span id="fileCount" class="file-count">0 files found</span>
+    </div>
+
+    <div id="fileList" class="file-list">
+      <div class="empty-state">
+        <p>Click "Scan Page" to find downloadable files</p>
+      </div>
+    </div>
+
+    <footer>
+      <button id="downloadBtn" class="btn btn-success" disabled>
+        <span class="icon">&#11015;</span> Download Selected (<span id="selectedCount">0</span>)
+      </button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
