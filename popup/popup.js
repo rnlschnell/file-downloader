@@ -26,7 +26,7 @@ let files = [];
 let filteredFiles = [];
 
 // DOM Elements
-const scanBtn = document.getElementById('scanBtn');
+const refreshBtn = document.getElementById('refreshBtn');
 const filterType = document.getElementById('filterType');
 const selectAllBtn = document.getElementById('selectAll');
 const deselectAllBtn = document.getElementById('deselectAll');
@@ -37,11 +37,14 @@ const selectedCount = document.getElementById('selectedCount');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-  scanBtn.addEventListener('click', scanPage);
+  refreshBtn.addEventListener('click', scanPage);
   filterType.addEventListener('change', applyFilter);
   selectAllBtn.addEventListener('click', selectAll);
   deselectAllBtn.addEventListener('click', deselectAll);
   downloadBtn.addEventListener('click', downloadSelected);
+
+  // Auto-scan on popup open
+  scanPage();
 });
 
 // Set button loading state
@@ -64,7 +67,8 @@ function setButtonLoading(button, isLoading) {
 
 // Scan the current page for files
 async function scanPage() {
-  setButtonLoading(scanBtn, true);
+  refreshBtn.disabled = true;
+  refreshBtn.classList.add('spinning');
 
   try {
     // Get the current tab
@@ -82,9 +86,10 @@ async function scanPage() {
     }
   } catch (error) {
     console.error('Scan error:', error);
-    showEmptyState('Error scanning page. Try refreshing the page.');
+    showEmptyState('Error scanning page. Try refreshing.');
   } finally {
-    setButtonLoading(scanBtn, false);
+    refreshBtn.disabled = false;
+    refreshBtn.classList.remove('spinning');
   }
 }
 

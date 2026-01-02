@@ -25,20 +25,15 @@
         <h1>Bulk File Downloader</h1>
         <p>Find and download files from any page</p>
       </div>
+      <button id="refreshBtn" class="btn btn-icon" title="Refresh">
+        <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 01-9.201 2.466l-.312-.311h2.433a.75.75 0 000-1.5H3.989a.75.75 0 00-.75.75v4.242a.75.75 0 001.5 0v-2.43l.31.31a7 7 0 0011.712-3.138.75.75 0 00-1.449-.39zm-1.23-7.674a7 7 0 00-11.712 3.138.75.75 0 001.449.39 5.5 5.5 0 019.201-2.466l.312.311h-2.433a.75.75 0 000 1.5h4.243a.75.75 0 00.75-.75V1.631a.75.75 0 00-1.5 0v2.43l-.31-.31z" clip-rule="evenodd"/>
+        </svg>
+      </button>
     </header>
 
     <!-- Controls -->
     <div class="controls">
-      <button id="scanBtn" class="btn btn-primary">
-        <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
-        </svg>
-        <span class="btn-text">Scan Page</span>
-        <span class="btn-loading hidden">
-          <span class="spinner"></span>
-          Scanning...
-        </span>
-      </button>
       <div class="filter-group">
         <label for="filterType">Filter:</label>
         <select id="filterType">
