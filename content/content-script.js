@@ -11,7 +11,9 @@ const SUPPORTED_EXTENSIONS = [
   // Audio
   'mp3', 'wav', 'ogg', 'flac', 'aac', 'm4a',
   // Archives
-  'zip', 'rar', '7z', 'tar', 'gz', 'bz2'
+  'zip', 'rar', '7z', 'tar', 'gz', 'bz2',
+  // Fonts
+  'ttf', 'otf', 'woff', 'woff2', 'eot'
 ];
 
 // Listen for messages from popup
@@ -57,8 +59,78 @@ function scanAnchorTags(files) {
     const fileInfo = extractFileInfo(href);
     if (fileInfo && isSupported(fileInfo.extension)) {
       files.set(href, fileInfo);
+    } else {
+      // Check for download links without obvious extensions
+      const downloadInfo = detectDownloadLink(anchor, href);
+      if (downloadInfo) {
+        files.set(href, downloadInfo);
+      }
     }
   });
+}
+
+// Detect download links that don't have obvious file extensions
+function detectDownloadLink(anchor, href) {
+  try {
+    const urlObj = new URL(href, window.location.href);
+    const pathname = urlObj.pathname.toLowerCase();
+    const anchorText = anchor.textContent.toLowerCase().trim();
+
+    // Check for download attribute (explicit download intent)
+    if (anchor.hasAttribute('download')) {
+      const downloadAttr = anchor.getAttribute('download');
+      const filename = downloadAttr || extractFilenameFromUrl(href) || 'download';
+      return {
+        url: href,
+        filename: filename,
+        extension: 'download',
+        isInferredDownload: true
+      };
+    }
+
+    // Check for download-related keywords in URL path
+    const downloadPathPatterns = ['/download', '/get/', '/fetch/', '/file/', '/files/', '/dl/', '/d/'];
+    const hasDownloadPath = downloadPathPatterns.some(pattern => pathname.includes(pattern));
+
+    // Check for download-related keywords in link text
+    const downloadTextPatterns = ['download', 'get file', 'save', 'export'];
+    const hasDownloadText = downloadTextPatterns.some(pattern => anchorText.includes(pattern));
+
+    // Check for download-related classes or data attributes
+    const hasDownloadClass = anchor.className.toLowerCase().includes('download');
+    const hasDownloadData = Array.from(anchor.attributes).some(attr =>
+      attr.name.startsWith('data-') && attr.value.toLowerCase().includes('download')
+    );
+
+    if (hasDownloadPath || hasDownloadText || hasDownloadClass || hasDownloadData) {
+      const filename = extractFilenameFromUrl(href) || anchorText.substring(0, 50) || 'download';
+      return {
+        url: href,
+        filename: filename,
+        extension: 'download',
+        isInferredDownload: true
+      };
+    }
+
+    return null;
+  } catch (e) {
+    return null;
+  }
+}
+
+// Extract a reasonable filename from URL
+function extractFilenameFromUrl(url) {
+  try {
+    const urlObj = new URL(url);
+    const pathParts = urlObj.pathname.split('/').filter(p => p);
+    const lastPart = pathParts[pathParts.length - 1];
+    if (lastPart && lastPart.length > 0 && lastPart.length < 100) {
+      return decodeURIComponent(lastPart);
+    }
+    return null;
+  } catch (e) {
+    return null;
+  }
 }
 
 // Scan <img> tags

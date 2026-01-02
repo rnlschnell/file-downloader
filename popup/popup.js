@@ -4,7 +4,9 @@ const FILE_TYPES = {
   documents: ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf', 'odt', 'ods'],
   videos: ['mp4', 'webm', 'avi', 'mov', 'mkv', 'flv', 'wmv'],
   audio: ['mp3', 'wav', 'ogg', 'flac', 'aac', 'm4a'],
-  archives: ['zip', 'rar', '7z', 'tar', 'gz', 'bz2']
+  archives: ['zip', 'rar', '7z', 'tar', 'gz', 'bz2'],
+  fonts: ['ttf', 'otf', 'woff', 'woff2', 'eot'],
+  downloads: ['download']
 };
 
 // File type icons
@@ -14,6 +16,8 @@ const FILE_ICONS = {
   videos: '🎬',
   audio: '🎵',
   archives: '📦',
+  fonts: '🔤',
+  downloads: '⬇️',
   default: '📎'
 };
 
