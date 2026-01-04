@@ -25,35 +25,27 @@
         <h1>Bulk File Downloader</h1>
         <p>Find and download files from any page</p>
       </div>
-      <button id="refreshBtn" class="btn btn-icon" title="Refresh">
-        <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 01-9.201 2.466l-.312-.311h2.433a.75.75 0 000-1.5H3.989a.75.75 0 00-.75.75v4.242a.75.75 0 001.5 0v-2.43l.31.31a7 7 0 0011.712-3.138.75.75 0 00-1.449-.39zm-1.23-7.674a7 7 0 00-11.712 3.138.75.75 0 001.449.39 5.5 5.5 0 019.201-2.466l.312.311h-2.433a.75.75 0 000 1.5h4.243a.75.75 0 00.75-.75V1.631a.75.75 0 00-1.5 0v2.43l-.31-.31z" clip-rule="evenodd"/>
-        </svg>
-      </button>
     </header>
 
-    <!-- Controls -->
-    <div class="controls">
-      <div class="filter-group">
-        <label for="filterType">Filter:</label>
-        <select id="filterType">
-          <option value="all">All Files</option>
-          <option value="images">Images</option>
-          <option value="documents">Documents</option>
-          <option value="videos">Videos</option>
-          <option value="audio">Audio</option>
-          <option value="archives">Archives</option>
-          <option value="fonts">Fonts</option>
-          <option value="downloads">Downloads</option>
-        </select>
-      </div>
-    </div>
+    <!-- File Count -->
+    <div id="fileCount" class="file-count">0 files found</div>
 
-    <!-- Selection Controls -->
-    <div class="selection-controls">
-      <button id="selectAll" class="btn btn-small">Select All</button>
-      <button id="deselectAll" class="btn btn-small">Deselect All</button>
-      <span id="fileCount" class="file-count">0 files found</span>
+    <!-- Controls Row -->
+    <div class="controls-row">
+      <label class="select-all-label">
+        <input type="checkbox" id="selectAllCheckbox" />
+        <span>Select All</span>
+      </label>
+      <select id="filterType">
+        <option value="all">All Files</option>
+        <option value="images">Images</option>
+        <option value="documents">Documents</option>
+        <option value="videos">Videos</option>
+        <option value="audio">Audio</option>
+        <option value="archives">Archives</option>
+        <option value="fonts">Fonts</option>
+        <option value="downloads">Downloads</option>
+      </select>
     </div>
 
     <!-- File List -->

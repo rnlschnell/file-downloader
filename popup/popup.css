@@ -194,31 +194,6 @@ body {
   color: var(--text-primary);
 }
 
-/* Icon button */
-.btn-icon {
-  padding: 8px;
-  background: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  margin-left: auto;
-}
-
-.btn-icon:hover:not(:disabled) {
-  background: var(--background-secondary);
-  border-color: var(--slate-300);
-  color: var(--text-primary);
-}
-
-.btn-icon svg {
-  width: 18px;
-  height: 18px;
-}
-
-.btn-icon.spinning svg {
-  animation: spin 0.8s linear infinite;
-}
-
 /* Spinner */
 .spinner {
   width: 16px;
@@ -235,68 +210,72 @@ body {
   }
 }
 
-/* Controls Section */
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.filter-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.filter-group label {
+/* File Count */
+.file-count {
   font-size: 0.75rem;
   color: var(--text-muted);
   font-weight: 500;
 }
 
-.filter-group select {
-  padding: 8px 12px;
-  border: 2px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-size: 0.8125rem;
-  font-family: inherit;
-  color: var(--text-primary);
-  background: var(--background-secondary);
-  cursor: pointer;
-  outline: none;
-  transition: var(--transition);
-}
-
-.filter-group select:hover {
-  border-color: var(--slate-300);
-}
-
-.filter-group select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-muted);
-}
-
-/* Selection Controls */
-.selection-controls {
+/* Controls Row */
+.controls-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 12px;
   padding: 10px 14px;
   background: var(--background-secondary);
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
 }
 
-.file-count {
-  margin-left: auto;
+.controls-row select {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   font-size: 0.75rem;
-  color: var(--text-muted);
+  font-family: inherit;
+  color: var(--text-primary);
+  background: var(--background);
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition);
+}
+
+.controls-row select:hover {
+  border-color: var(--slate-300);
+}
+
+.controls-row select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-muted);
+}
+
+.select-all-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.8125rem;
   font-weight: 500;
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.select-all-label:hover {
+  color: var(--text-primary);
+}
+
+.select-all-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--primary);
 }
 
 /* File List */
 .file-list {
-  max-height: 240px;
+  max-height: 280px;
   overflow-y: auto;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
@@ -523,3 +502,67 @@ select:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* File size display */
+.file-size {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Enriched badge */
+.enriched-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  color: var(--success);
+  background: var(--success-bg);
+  border-radius: 50%;
+}
+
+/* File item states */
+.file-item.enriched .file-name {
+  color: var(--text-primary);
+}
+
+.file-item.inferred .file-type {
+  background: rgba(249, 115, 22, 0.1);
+  border-color: rgba(249, 115, 22, 0.2);
+  color: var(--coral-600);
+}
+
+/* Updated indicator animation */
+.file-count.updated {
+  animation: countUpdate 0.5s ease;
+}
+
+@keyframes countUpdate {
+  0%, 100% {
+    color: var(--text-muted);
+  }
+  50% {
+    color: var(--primary);
+    transform: scale(1.05);
+  }
+}
+
+/* Loading state in empty state */
+.empty-state.loading {
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty-state .spinner {
+  width: 24px;
+  height: 24px;
+  border-width: 3px;
+  border-color: var(--slate-200);
+  border-top-color: var(--primary);
+}
+
