@@ -1,0 +1,1074 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const features = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>`,
+    title: "One-Click Scanning",
+    description: "Instantly scan any webpage for downloadable files. Our smart detection finds images, documents, videos, and more."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" /></svg>`,
+    title: "Filter by Type",
+    description: "Quickly filter results by category—images, documents, videos, audio, or archives. Find exactly what you need."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+    title: "Select All or Pick",
+    description: "Download everything at once with Select All, or hand-pick specific files. You're in complete control."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>`,
+    title: "Fast Downloads",
+    description: "Sequential downloading with optimized timing ensures reliable, fast batch downloads without overwhelming your browser."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" /></svg>`,
+    title: "All File Types",
+    description: "Support for 30+ file formats including images, PDFs, Word docs, spreadsheets, videos, audio, and compressed archives."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+    title: "No Registration",
+    description: "Works instantly after install. No account needed, no sign-ups, no subscriptions. Just click and download."
+  }
+];
+
+const steps = [
+  {
+    num: "01",
+    title: "Click the Extension",
+    description: "Click the Bulk File Downloader icon in your Chrome toolbar when you're on any webpage."
+  },
+  {
+    num: "02",
+    title: "Files Are Scanned",
+    description: "The extension automatically scans the page and displays all downloadable files organized by type."
+  },
+  {
+    num: "03",
+    title: "Download Selected",
+    description: "Select the files you want (or all of them) and click Download. That's it!"
+  }
+];
+
+const fileTypes = [
+  { category: "Images", types: ["JPG", "PNG", "GIF", "WEBP", "SVG", "BMP", "ICO"], color: "#10B981" },
+  { category: "Documents", types: ["PDF", "DOC", "DOCX", "XLS", "XLSX", "PPT", "TXT"], color: "#3B82F6" },
+  { category: "Videos", types: ["MP4", "WEBM", "AVI", "MOV", "MKV", "FLV"], color: "#8B5CF6" },
+  { category: "Audio", types: ["MP3", "WAV", "OGG", "FLAC", "AAC", "M4A"], color: "#EC4899" },
+  { category: "Archives", types: ["ZIP", "RAR", "7Z", "TAR", "GZ"], color: "#F59E0B" }
+];
+
+const faqs = [
+  {
+    q: "Is Bulk File Downloader free?",
+    a: "Yes, completely free! There are no hidden costs, subscriptions, or premium tiers. All features are available to everyone."
+  },
+  {
+    q: "Does it work on all websites?",
+    a: "The extension works on most websites. It scans the page's HTML for downloadable file links. Some sites with heavy JavaScript loading or authentication may have limitations."
+  },
+  {
+    q: "Will it download YouTube videos?",
+    a: "No, this extension is not designed for downloading streaming content from platforms like YouTube. It finds direct file links on webpages."
+  },
+  {
+    q: "Is my data safe?",
+    a: "Absolutely. We don't collect any personal data, don't track your browsing, and don't send any information to external servers. Everything happens locally in your browser."
+  },
+  {
+    q: "What browsers are supported?",
+    a: "Currently, Bulk File Downloader is available for Google Chrome and other Chromium-based browsers like Edge, Brave, and Opera."
+  },
+  {
+    q: "How do I report a bug or request a feature?",
+    a: "We welcome feedback! You can reach out through the Chrome Web Store listing or our support channels."
+  }
+];
+---
+
+<Layout title="Bulk File Downloader - Download All Files From Any Webpage | Free Chrome Extension">
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-content">
+      <a href="/" class="nav-brand">
+        <img src="/icon128.png" alt="Bulk File Downloader" class="nav-logo" />
+        <span class="nav-title">Bulk File Downloader</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#faq">FAQ</a>
+        <a href="#" class="nav-cta">Add to Chrome</a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Free Chrome Extension
+      </div>
+      <h1 class="hero-title">
+        Download <span class="text-gradient">All Files</span><br/>
+        From Any Webpage
+      </h1>
+      <p class="hero-description">
+        Stop downloading files one by one. Bulk File Downloader scans any webpage and lets you
+        batch download images, videos, documents, and more with a single click.
+      </p>
+      <div class="hero-cta">
+        <a href="#" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          Add to Chrome — It's Free
+        </a>
+        <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value">30+</span>
+          <span class="stat-label">File Types</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">Free Forever</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">0</span>
+          <span class="stat-label">Data Collected</span>
+        </div>
+      </div>
+    </div>
+    <!-- Floating file badges -->
+    <div class="floating-files">
+      <div class="float-file f1">PDF</div>
+      <div class="float-file f2">MP4</div>
+      <div class="float-file f3">PNG</div>
+      <div class="float-file f4">ZIP</div>
+      <div class="float-file f5">JPG</div>
+      <div class="float-file f6">DOC</div>
+      <div class="float-file f7">MP3</div>
+      <div class="float-file f8">RAR</div>
+      <div class="float-file f9">XLSX</div>
+      <div class="float-file f10">GIF</div>
+      <div class="float-file f11">WAV</div>
+      <div class="float-file f12">AVI</div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Features</span>
+        <h2 class="section-title">Everything You Need for<br/><span class="text-gradient">Bulk Downloads</span></h2>
+        <p class="section-description">
+          Powerful features wrapped in a simple interface. Mass download files without the hassle.
+        </p>
+      </div>
+      <div class="features-grid">
+        {features.map((feature, i) => (
+          <div class="feature-card" style={`--delay: ${i * 0.1}s`}>
+            <div class="feature-icon" set:html={feature.icon} />
+            <h3 class="feature-title">{feature.title}</h3>
+            <p class="feature-description">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">How It Works</span>
+        <h2 class="section-title">Three Simple Steps to<br/><span class="text-gradient">Download Everything</span></h2>
+      </div>
+      <div class="steps-container">
+        {steps.map((step, i) => (
+          <div class="step-card">
+            <div class="step-num">{step.num}</div>
+            <div class="step-content">
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-description">{step.description}</p>
+            </div>
+            {i < steps.length - 1 && <div class="step-connector"><div class="connector-line"></div></div>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- File Types -->
+  <section class="file-types">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Supported Formats</span>
+        <h2 class="section-title">Works With <span class="text-gradient">All Your Files</span></h2>
+        <p class="section-description">
+          From images to archives, we've got you covered with 30+ supported file types.
+        </p>
+      </div>
+      <div class="types-grid">
+        {fileTypes.map((category) => (
+          <div class="type-card">
+            <div class="type-header" style={`--accent: ${category.color}`}>
+              <h3 class="type-category">{category.category}</h3>
+            </div>
+            <div class="type-badges">
+              {category.types.map((type) => (
+                <span class="type-badge" style={`--accent: ${category.color}`}>{type}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">FAQ</span>
+        <h2 class="section-title">Frequently Asked<br/><span class="text-gradient">Questions</span></h2>
+      </div>
+      <div class="faq-grid">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" style={`--delay: ${i * 0.05}s`}>
+            <summary class="faq-question">
+              {faq.q}
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </summary>
+            <p class="faq-answer">{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-bg"></div>
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to Download Smarter?</h2>
+          <p class="cta-description">
+            Join thousands of users who save time with Bulk File Downloader.
+            It's free, private, and works on any website.
+          </p>
+          <a href="#" class="btn btn-primary btn-large">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            Add to Chrome — It's Free
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="/icon128.png" alt="Bulk File Downloader" class="footer-logo" />
+          <span class="footer-title">Bulk File Downloader</span>
+        </div>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#faq">FAQ</a>
+          <a href="/privacy">Privacy Policy</a>
+        </div>
+        <div class="footer-copy">
+          © {new Date().getFullYear()} Bulk File Downloader. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuBtn?.addEventListener('click', () => {
+      navLinks?.classList.toggle('open');
+      menuBtn.classList.toggle('open');
+    });
+
+    // Close menu when clicking a link
+    navLinks?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn?.classList.remove('open');
+      });
+    });
+  </script>
+</Layout>
+
+<style>
+  /* Navigation */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 16px 0;
+    background: rgba(13, 13, 13, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-title {
+    font-weight: 600;
+    color: var(--white);
+    font-size: 1.1rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-links a {
+    color: var(--gray-400);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+  }
+
+  .nav-cta {
+    background: var(--orange);
+    color: var(--dark) !important;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .nav-cta:hover {
+    background: var(--orange-light);
+    transform: translateY(-1px);
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: rgba(13, 13, 13, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 20px;
+      gap: 4px;
+      border-bottom: 1px solid var(--gray-800);
+    }
+    .nav-links.open {
+      display: flex;
+    }
+    .nav-links a {
+      padding: 14px 16px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .nav-links a:hover {
+      background: var(--gray-800);
+    }
+    .nav-links .nav-cta {
+      margin-top: 12px;
+      padding: 14px 20px;
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
+    .mobile-menu-btn {
+      display: block;
+    }
+    .nav-title {
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 140px 0 80px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 140, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 140, 0, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse, var(--orange-glow) 0%, transparent 60%);
+    filter: blur(80px);
+    opacity: 0.5;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 140, 0, 0.1);
+    border: 1px solid rgba(255, 140, 0, 0.2);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: var(--orange);
+    margin-bottom: 24px;
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 1.15rem;
+    color: var(--gray-400);
+    margin-bottom: 32px;
+    line-height: 1.7;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: var(--dark);
+  }
+
+  .btn-primary:hover {
+    background: var(--orange-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--orange-glow);
+  }
+
+  .btn-secondary {
+    background: var(--gray-800);
+    color: var(--white);
+    border: 1px solid var(--gray-700);
+  }
+
+  .btn-secondary:hover {
+    background: var(--gray-700);
+    transform: translateY(-2px);
+  }
+
+  .btn-large {
+    padding: 18px 36px;
+    font-size: 1.1rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    font-family: var(--font-mono);
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--gray-700);
+  }
+
+  /* Floating Files */
+  .floating-files {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .float-file {
+    position: absolute;
+    padding: 10px 16px;
+    background: var(--dark-card);
+    border: 1px solid var(--gray-800);
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    animation: float 8s ease-in-out infinite;
+    opacity: 0.9;
+  }
+
+  /* Scattered randomly across the section */
+  .f1 { top: 18%; left: 7%; animation-delay: 0s; color: #3B82F6; }
+  .f2 { top: 25%; left: 20%; animation-delay: 2.2s; color: #8B5CF6; }
+  .f3 { top: 22%; right: 15%; animation-delay: 0.8s; color: #10B981; }
+  .f4 { top: 38%; right: 6%; animation-delay: 3.5s; color: #F59E0B; }
+  .f5 { top: 45%; left: 4%; animation-delay: 1.5s; color: #10B981; }
+  .f6 { top: 52%; left: 18%; animation-delay: 4.2s; color: #3B82F6; }
+  .f7 { top: 58%; right: 22%; animation-delay: 2.8s; color: #EC4899; }
+  .f8 { top: 68%; right: 8%; animation-delay: 0.5s; color: #F59E0B; }
+  .f9 { top: 72%; left: 9%; animation-delay: 3s; color: #3B82F6; }
+  .f10 { top: 82%; left: 22%; animation-delay: 1.8s; color: #10B981; }
+  .f11 { top: 78%; right: 18%; animation-delay: 4.8s; color: #EC4899; }
+  .f12 { top: 32%; right: 28%; animation-delay: 2.5s; color: #8B5CF6; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-12px) rotate(1deg); }
+    50% { transform: translateY(-20px) rotate(0deg); }
+    75% { transform: translateY(-8px) rotate(-1deg); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 1100px) {
+    .hero-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-cta {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-stats {
+      justify-content: center;
+    }
+    .floating-files {
+      opacity: 0.5;
+    }
+    .float-file {
+      font-size: 0.7rem;
+      padding: 6px 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .floating-files {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-cta {
+      flex-direction: column;
+    }
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+    .hero-stats {
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .stat-divider {
+      display: none;
+    }
+  }
+
+  /* Sections */
+  section {
+    padding: 100px 0;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 64px;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 16px;
+  }
+
+  .section-description {
+    font-size: 1.1rem;
+    color: var(--gray-400);
+  }
+
+  /* Features */
+  .features {
+    background: var(--dark-lighter);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--dark-card);
+    border: 1px solid var(--gray-800);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s;
+    animation: fadeInUp 0.6s ease-out var(--delay) both;
+  }
+
+  .feature-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 140, 0, 0.1);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    color: var(--orange);
+  }
+
+  .feature-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .feature-title {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .feature-description {
+    color: var(--gray-400);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* How It Works */
+  .steps-container {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+  }
+
+  .step-card {
+    flex: 1;
+    max-width: 350px;
+    text-align: center;
+    position: relative;
+    padding: 0 32px;
+  }
+
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--orange);
+    opacity: 0.3;
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .step-description {
+    color: var(--gray-400);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .step-connector {
+    position: absolute;
+    top: 35px;
+    right: -20px;
+    width: 40px;
+    height: 2px;
+  }
+
+  .connector-line {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--orange), transparent);
+  }
+
+  @media (max-width: 768px) {
+    .steps-container {
+      flex-direction: column;
+      gap: 48px;
+    }
+    .step-card {
+      max-width: 100%;
+    }
+    .step-connector {
+      display: none;
+    }
+  }
+
+  /* File Types */
+  .file-types {
+    background: var(--dark-lighter);
+  }
+
+  .types-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+
+  .type-card {
+    background: var(--dark-card);
+    border: 1px solid var(--gray-800);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .type-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .type-header {
+    padding: 16px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 20%, transparent), transparent);
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .type-category {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .type-badges {
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .type-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+  }
+
+  @media (max-width: 1000px) {
+    .types-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .types-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* FAQ */
+  .faq-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    background: var(--dark-card);
+    border: 1px solid var(--gray-800);
+    border-radius: 12px;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out var(--delay) both;
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--white);
+    font-size: 1rem;
+    list-style: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-chevron {
+    color: var(--gray-600);
+    transition: transform 0.3s;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--orange);
+  }
+
+  .faq-answer {
+    padding: 0 24px 20px;
+    color: var(--gray-400);
+    line-height: 1.7;
+  }
+
+  /* CTA */
+  .cta {
+    padding: 80px 0;
+  }
+
+  .cta-card {
+    position: relative;
+    background: var(--dark-card);
+    border: 1px solid var(--gray-800);
+    border-radius: 24px;
+    padding: 80px 40px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, var(--orange-glow), transparent 60%);
+    opacity: 0.3;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 16px;
+  }
+
+  .cta-description {
+    font-size: 1.1rem;
+    color: var(--gray-400);
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--gray-900);
+    padding: 48px 0;
+    border-top: 1px solid var(--gray-800);
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .footer-title {
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-links a {
+    color: var(--gray-400);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--orange);
+  }
+
+  .footer-copy {
+    color: var(--gray-600);
+    font-size: 0.85rem;
+  }
+</style>

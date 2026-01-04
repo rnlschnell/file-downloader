@@ -1,0 +1,435 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Privacy Policy - Bulk File Downloader"
+  description="Privacy Policy for Bulk File Downloader Chrome extension. We respect your privacy and do not collect any personal data."
+>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-content">
+      <a href="/" class="nav-brand">
+        <img src="/icon128.png" alt="Bulk File Downloader" class="nav-logo" />
+        <span class="nav-title">Bulk File Downloader</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#faq">FAQ</a>
+        <a href="#" class="nav-cta">Add to Chrome</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="privacy-page">
+    <div class="container">
+      <div class="privacy-header">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: January 2026</p>
+      </div>
+
+      <div class="privacy-content">
+        <section class="privacy-section">
+          <h2>Overview</h2>
+          <p>
+            Bulk File Downloader is committed to protecting your privacy. This Privacy Policy explains
+            how the Bulk File Downloader Chrome extension handles your information. The short version:
+            <strong>we don't collect, store, or transmit any of your personal data.</strong>
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>Information We Don't Collect</h2>
+          <p>Bulk File Downloader does <strong>not</strong> collect:</p>
+          <ul>
+            <li>Personal information (name, email, address, etc.)</li>
+            <li>Browsing history or activity</li>
+            <li>Information about the websites you visit</li>
+            <li>Files you download or their contents</li>
+            <li>Analytics or usage data</li>
+            <li>IP addresses or location data</li>
+            <li>Any other form of tracking information</li>
+          </ul>
+        </section>
+
+        <section class="privacy-section">
+          <h2>How the Extension Works</h2>
+          <p>
+            Bulk File Downloader operates entirely within your browser. Here's how it works:
+          </p>
+          <ul>
+            <li>
+              <strong>Active Tab Permission:</strong> The extension only accesses webpage content
+              when you click the extension icon. It cannot access any page unless you explicitly
+              activate it.
+            </li>
+            <li>
+              <strong>Page Scanning:</strong> When activated, the extension scans the current page's
+              HTML for downloadable file links. This scanning happens locally in your browser—no
+              data is sent anywhere.
+            </li>
+            <li>
+              <strong>Downloads:</strong> When you choose to download files, the extension uses
+              Chrome's built-in downloads API to save files directly to your computer. We don't
+              intercept or monitor these downloads.
+            </li>
+          </ul>
+        </section>
+
+        <section class="privacy-section">
+          <h2>Permissions Explained</h2>
+          <p>The extension requests these Chrome permissions:</p>
+          <div class="permission-list">
+            <div class="permission-item">
+              <span class="permission-name">activeTab</span>
+              <span class="permission-desc">
+                Allows the extension to access the current tab only when you click on the
+                extension icon. This is the most privacy-respecting way to access page content.
+              </span>
+            </div>
+            <div class="permission-item">
+              <span class="permission-name">downloads</span>
+              <span class="permission-desc">
+                Required to save files to your computer using Chrome's download manager.
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section class="privacy-section">
+          <h2>Data Storage</h2>
+          <p>
+            Bulk File Downloader does not store any data locally or remotely. Each time you use
+            the extension, it starts fresh with no memory of previous sessions. Your downloaded
+            files are saved to your computer through Chrome's standard download process.
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>Third-Party Services</h2>
+          <p>
+            Bulk File Downloader does not use any third-party services, analytics platforms,
+            or external servers. The extension operates completely offline after installation.
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>Children's Privacy</h2>
+          <p>
+            Our extension does not collect any personal information from anyone, including
+            children under 13 years of age.
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>Changes to This Policy</h2>
+          <p>
+            If we make changes to this Privacy Policy, we will update the "Last updated" date
+            at the top of this page. We encourage you to review this policy periodically.
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>Contact</h2>
+          <p>
+            If you have any questions about this Privacy Policy or the Bulk File Downloader
+            extension, please reach out through the Chrome Web Store listing.
+          </p>
+        </section>
+
+        <div class="privacy-summary">
+          <h3>Summary</h3>
+          <p>
+            Bulk File Downloader is designed with privacy in mind. We believe you should be able
+            to use helpful browser tools without sacrificing your privacy. That's why we've built
+            an extension that works entirely on your device without collecting or transmitting any data.
+          </p>
+        </div>
+      </div>
+
+      <div class="back-link">
+        <a href="/">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="/icon128.png" alt="Bulk File Downloader" class="footer-logo" />
+          <span class="footer-title">Bulk File Downloader</span>
+        </div>
+        <div class="footer-links">
+          <a href="/#features">Features</a>
+          <a href="/#how-it-works">How It Works</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/privacy">Privacy Policy</a>
+        </div>
+        <div class="footer-copy">
+          © {new Date().getFullYear()} Bulk File Downloader. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* Navigation */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 16px 0;
+    background: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-title {
+    font-weight: 600;
+    color: var(--white);
+    font-size: 1.1rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-links a {
+    color: var(--gray-400);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+  }
+
+  .nav-cta {
+    background: var(--orange);
+    color: var(--dark) !important;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .nav-cta:hover {
+    background: var(--orange-light);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  }
+
+  /* Privacy Page */
+  .privacy-page {
+    padding: 140px 0 80px;
+    min-height: calc(100vh - 200px);
+  }
+
+  .privacy-header {
+    margin-bottom: 48px;
+  }
+
+  .privacy-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 12px;
+  }
+
+  .last-updated {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+  }
+
+  .privacy-content {
+    max-width: 800px;
+  }
+
+  .privacy-section {
+    margin-bottom: 40px;
+  }
+
+  .privacy-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    color: var(--white);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .privacy-section p {
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  .privacy-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .privacy-section li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+
+  .privacy-section li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+
+  .privacy-section strong {
+    color: var(--white);
+  }
+
+  .permission-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .permission-item {
+    background: var(--dark-card);
+    border: 1px solid var(--gray-800);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .permission-name {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--orange);
+    background: rgba(255, 140, 0, 0.1);
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .permission-desc {
+    display: block;
+    color: var(--gray-400);
+    line-height: 1.7;
+  }
+
+  .privacy-summary {
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), transparent);
+    border: 1px solid rgba(255, 140, 0, 0.2);
+    border-radius: 16px;
+    padding: 32px;
+    margin-top: 48px;
+  }
+
+  .privacy-summary h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: var(--orange);
+  }
+
+  .privacy-summary p {
+    margin: 0;
+    line-height: 1.8;
+  }
+
+  .back-link {
+    margin-top: 48px;
+  }
+
+  .back-link a {
+    color: var(--orange);
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .back-link a:hover {
+    opacity: 0.8;
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--gray-900);
+    padding: 48px 0;
+    border-top: 1px solid var(--gray-800);
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .footer-title {
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-links a {
+    color: var(--gray-400);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--orange);
+  }
+
+  .footer-copy {
+    color: var(--gray-600);
+    font-size: 0.85rem;
+  }
+</style>
